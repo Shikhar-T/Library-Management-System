@@ -13,6 +13,119 @@ The following tables have been created for managing the library data:
 5. **Issued Status** - Tracks the issued books to members.
 6. **Return Status** - Tracks the returned books.
 
+
+-- Table Creation
+
+-- 1. Branch Table
+-- This table stores information about the different branches of the library.
+DROP TABLE IF EXISTS branch ;
+CREATE TABLE branch 
+( 
+  branch_id VARCHAR(10) PRIMARY KEY ,
+  manager_id VARCHAR(10) ,
+  branch_address VARCHAR(55),
+  contact_no VARCHAR(10)
+);
+
+-- 2. Employee Table
+-- This table stores the details of employees who manage the library and its operations.
+DROP TABLE IF EXISTS employee ;
+CREATE TABLE employee  
+(
+  emp_id VARCHAR(10) PRIMARY KEY ,
+  emp_name VARCHAR(25) ,
+  position VARCHAR(25) ,
+  salary FLOAT,
+  branch_id VARCHAR(25) -- Foreign Key
+);
+
+-- 3. Books Table
+-- This table stores the details of books available in the library.
+DROP TABLE IF EXISTS books ;
+CREATE TABLE books  
+(
+  isbn VARCHAR(20) PRIMARY KEY ,
+  book_title VARCHAR(60) ,
+  category VARCHAR(20) ,
+  rental_price FLOAT,
+  status VARCHAR(15) ,
+  author VARCHAR(30) ,	
+  publisher VARCHAR(30)
+);
+
+-- 4. Members Table
+-- This table stores information about the members who are registered with the library.
+DROP TABLE IF EXISTS members ;
+CREATE TABLE members  
+(
+  member_id VARCHAR(10) PRIMARY KEY ,
+  member_name VARCHAR(25) ,
+  member_address VARCHAR(75) ,
+  reg_date DATE 
+);
+
+-- 5. Issued Status Table
+-- This table tracks the status of books issued to members, including the employee who issued the book and the issue date.
+DROP TABLE IF EXISTS issued_status ;
+CREATE TABLE issued_status  
+( 
+  issued_id VARCHAR(10) PRIMARY KEY,	
+  issued_member_id VARCHAR(10),   -- Foreign Key
+  issued_book_name VARCHAR(75),
+  issued_date DATE ,	
+  issued_book_isbn VARCHAR(25),	-- Foreign Key
+  issued_emp_id VARCHAR(10)       -- Foreign Key
+);
+
+-- 6. Return Status Table
+-- This table stores the return status of the books issued to members, including the return date and book quality.
+DROP TABLE IF EXISTS return_status ;
+CREATE TABLE return_status  
+( 
+  return_id VARCHAR(10) PRIMARY KEY ,
+  issued_id VARCHAR(10) ,
+  return_book_name VARCHAR(75),
+  return_date DATE,
+  return_book_isbn VARCHAR(20)
+);
+
+-- Foreign Key Constraints
+
+-- 1. Foreign Keys in Issued Status Table
+-- The issued_member_id references the member_id in the members table.
+ALTER TABLE issued_status
+ADD CONSTRAINT fk_members
+FOREIGN KEY (issued_member_id)
+REFERENCES members(member_id);
+
+-- The issued_book_isbn references the isbn in the books table.
+ALTER TABLE issued_status
+ADD CONSTRAINT fk_books
+FOREIGN KEY (issued_book_isbn)
+REFERENCES books(isbn);
+
+-- The issued_emp_id references the emp_id in the employee table.
+ALTER TABLE issued_status
+ADD CONSTRAINT fk_employees
+FOREIGN KEY (issued_emp_id)
+REFERENCES employee(emp_id);
+
+-- 2. Foreign Key in Employee Table
+-- The branch_id references the branch_id in the branch table.
+ALTER TABLE employee
+ADD CONSTRAINT fk_branch
+FOREIGN KEY (branch_id)
+REFERENCES branch(branch_id);
+
+-- 3. Foreign Key in Return Status Table
+-- The issued_id references the issued_id in the issued_status table.
+ALTER TABLE return_status
+ADD CONSTRAINT fk_issued_status
+FOREIGN KEY (issued_id)
+REFERENCES issued_status(issued_id);
+
+
+
 ## Objectives of Each Task
 
 ### Task 1: Create a New Book Record
