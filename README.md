@@ -128,7 +128,7 @@ FOREIGN KEY (issued_emp_id)
 REFERENCES employee(emp_id);
 ```
 
-** 2. Foreign Key in Employee Table **
+2. Foreign Key in Employee Table
 -- The branch_id references the branch_id in the branch table.
 ```sql
 ALTER TABLE employee
@@ -137,7 +137,7 @@ FOREIGN KEY (branch_id)
 REFERENCES branch(branch_id);
 ```
 
-** 3. Foreign Key in Return Status Table **
+3. Foreign Key in Return Status Table
 -- The issued_id references the issued_id in the issued_status table.
 ```sql
 ALTER TABLE return_status
