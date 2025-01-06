@@ -16,7 +16,7 @@ The following tables have been created for managing the library data:
 # **Table Creation**
 
 
-** 1. Branch Table **
+1. Branch Table
 -- This table stores information about the different branches of the library.
 ```sql
 DROP TABLE IF EXISTS branch ;
@@ -29,7 +29,7 @@ CREATE TABLE branch
 );
 ```
 
-** 2. Employee Table **
+2. Employee Table
 -- This table stores the details of employees who manage the library and its operations.
 ```sql
 DROP TABLE IF EXISTS employee ;
@@ -43,7 +43,7 @@ CREATE TABLE employee
 );
 ```
 
-** 3. Books Table **
+3. Books Table
 -- This table stores the details of books available in the library.
 ```sql
 DROP TABLE IF EXISTS books ;
@@ -59,7 +59,7 @@ CREATE TABLE books
 );
 ```
 
-** 4. Members Table **
+4. Members Table
 -- This table stores information about the members who are registered with the library.
 ```sql
 DROP TABLE IF EXISTS members ;
@@ -72,7 +72,7 @@ CREATE TABLE members
 );
 ```
 
-** 5. Issued Status Table **
+5. Issued Status Table
 -- This table tracks the status of books issued to members, including the employee who issued the book and the issue date.
 ```sql
 DROP TABLE IF EXISTS issued_status ;
@@ -87,7 +87,7 @@ CREATE TABLE issued_status
 );
 ```
 
-** 6. Return Status Table **
+6. Return Status Table
 -- This table stores the return status of the books issued to members, including the return date and book quality.
 ```sql
 DROP TABLE IF EXISTS return_status ;
@@ -104,7 +104,8 @@ CREATE TABLE return_status
 # **Foreign Key Constraints**
 
 
-** 1. Foreign Keys in Issued Status Table **
+1. Foreign Keys in Issued Status Table
+
 1.1) The issued_member_id references the member_id in the members table.
 ```sql
 ALTER TABLE issued_status
