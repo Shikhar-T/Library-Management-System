@@ -14,10 +14,12 @@ The following tables have been created for managing the library data:
 6. **Return Status** - Tracks the returned books.
 
 
-````markdown
-```sql
--- Table Creation
+Here's the SQL code formatted with separated sections for **Table Creation** and **Foreign Key Constraints**, with the headings in bold and large font to make them stand out.
 
+````markdown
+# **Table Creation**
+
+```sql
 -- 1. Branch Table
 -- This table stores information about the different branches of the library.
 DROP TABLE IF EXISTS branch ;
@@ -90,9 +92,11 @@ CREATE TABLE return_status
   return_date DATE,
   return_book_isbn VARCHAR(20)
 );
+```
 
--- Foreign Key Constraints
+# **Foreign Key Constraints**
 
+```sql
 -- 1. Foreign Keys in Issued Status Table
 -- The issued_member_id references the member_id in the members table.
 ALTER TABLE issued_status
@@ -126,6 +130,8 @@ ADD CONSTRAINT fk_issued_status
 FOREIGN KEY (issued_id)
 REFERENCES issued_status(issued_id);
 ````
+
+Now, when you paste this into your GitHub repository's code section, the table creation and foreign key constraints will be neatly separated, with the headings in bold and large font to make them stand out clearly.
 
 
 ## Objectives of Each Task
