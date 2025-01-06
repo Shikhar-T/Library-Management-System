@@ -13,15 +13,12 @@ The following tables have been created for managing the library data:
 5. **Issued Status** - Tracks the issued books to members.
 6. **Return Status** - Tracks the returned books.
 
-
-Here's the SQL code formatted with separated sections for **Table Creation** and **Foreign Key Constraints**, with the headings in bold and large font to make them stand out.
-
-````markdown
 # **Table Creation**
 
-```sql
--- 1. Branch Table
+
+** 1. Branch Table **
 -- This table stores information about the different branches of the library.
+```sql
 DROP TABLE IF EXISTS branch ;
 CREATE TABLE branch 
 ( 
@@ -30,9 +27,11 @@ CREATE TABLE branch
   branch_address VARCHAR(55),
   contact_no VARCHAR(10)
 );
+```
 
--- 2. Employee Table
+** 2. Employee Table **
 -- This table stores the details of employees who manage the library and its operations.
+```sql
 DROP TABLE IF EXISTS employee ;
 CREATE TABLE employee  
 (
@@ -42,9 +41,11 @@ CREATE TABLE employee
   salary FLOAT,
   branch_id VARCHAR(25) -- Foreign Key
 );
+```
 
--- 3. Books Table
+** 3. Books Table **
 -- This table stores the details of books available in the library.
+```sql
 DROP TABLE IF EXISTS books ;
 CREATE TABLE books  
 (
@@ -56,9 +57,11 @@ CREATE TABLE books
   author VARCHAR(30) ,	
   publisher VARCHAR(30)
 );
+```
 
--- 4. Members Table
+** 4. Members Table **
 -- This table stores information about the members who are registered with the library.
+```sql
 DROP TABLE IF EXISTS members ;
 CREATE TABLE members  
 (
@@ -67,9 +70,11 @@ CREATE TABLE members
   member_address VARCHAR(75) ,
   reg_date DATE 
 );
+```
 
--- 5. Issued Status Table
+** 5. Issued Status Table **
 -- This table tracks the status of books issued to members, including the employee who issued the book and the issue date.
+```sql
 DROP TABLE IF EXISTS issued_status ;
 CREATE TABLE issued_status  
 ( 
@@ -80,9 +85,11 @@ CREATE TABLE issued_status
   issued_book_isbn VARCHAR(25),	-- Foreign Key
   issued_emp_id VARCHAR(10)       -- Foreign Key
 );
+```
 
--- 6. Return Status Table
+** 6. Return Status Table **
 -- This table stores the return status of the books issued to members, including the return date and book quality.
+```sql
 DROP TABLE IF EXISTS return_status ;
 CREATE TABLE return_status  
 ( 
@@ -96,43 +103,47 @@ CREATE TABLE return_status
 
 # **Foreign Key Constraints**
 
+
+** 1. Foreign Keys in Issued Status Table **
+1.1) The issued_member_id references the member_id in the members table.
 ```sql
--- 1. Foreign Keys in Issued Status Table
--- The issued_member_id references the member_id in the members table.
 ALTER TABLE issued_status
 ADD CONSTRAINT fk_members
 FOREIGN KEY (issued_member_id)
 REFERENCES members(member_id);
-
--- The issued_book_isbn references the isbn in the books table.
+```
+1.2) The issued_book_isbn references the isbn in the books table.
+```sql
 ALTER TABLE issued_status
 ADD CONSTRAINT fk_books
 FOREIGN KEY (issued_book_isbn)
 REFERENCES books(isbn);
-
--- The issued_emp_id references the emp_id in the employee table.
+```
+1.3) The issued_emp_id references the emp_id in the employee table.
+```sql
 ALTER TABLE issued_status
 ADD CONSTRAINT fk_employees
 FOREIGN KEY (issued_emp_id)
 REFERENCES employee(emp_id);
+```
 
--- 2. Foreign Key in Employee Table
+** 2. Foreign Key in Employee Table **
 -- The branch_id references the branch_id in the branch table.
+```sql
 ALTER TABLE employee
 ADD CONSTRAINT fk_branch
 FOREIGN KEY (branch_id)
 REFERENCES branch(branch_id);
+```
 
--- 3. Foreign Key in Return Status Table
+** 3. Foreign Key in Return Status Table **
 -- The issued_id references the issued_id in the issued_status table.
+```sql
 ALTER TABLE return_status
 ADD CONSTRAINT fk_issued_status
 FOREIGN KEY (issued_id)
 REFERENCES issued_status(issued_id);
-````
-
-Now, when you paste this into your GitHub repository's code section, the table creation and foreign key constraints will be neatly separated, with the headings in bold and large font to make them stand out clearly.
-
+```
 
 ## Objectives of Each Task
 
