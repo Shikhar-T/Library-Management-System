@@ -14,6 +14,8 @@ The following tables have been created for managing the library data:
 6. **Return Status** - Tracks the returned books.
 
 
+````markdown
+```sql
 -- Table Creation
 
 -- 1. Branch Table
@@ -123,7 +125,7 @@ ALTER TABLE return_status
 ADD CONSTRAINT fk_issued_status
 FOREIGN KEY (issued_id)
 REFERENCES issued_status(issued_id);
-
+````
 
 
 ## Objectives of Each Task
