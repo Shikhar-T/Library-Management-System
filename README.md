@@ -146,7 +146,11 @@ FOREIGN KEY (issued_id)
 REFERENCES issued_status(issued_id);
 ```
 
-## Objectives of Each Task
+## ERD Diagram
+![ERD Diagram](https://github.com/Shikhar-T/Library-Management-System/blob/main/Untitled.png?raw=true)
+
+
+## Project Task
 
 ### Task 1: Create a New Book Record
 - **Objective**: Insert a new book ("To Kill a Mockingbird") into the books table with details like ISBN, title, category, rental price, availability, author, and publisher.
